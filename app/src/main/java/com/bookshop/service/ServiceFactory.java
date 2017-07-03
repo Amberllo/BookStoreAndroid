@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceFactory {
 
-
+    private static String ServiceHost = "http://localhost:8080";
     static Retrofit createRetrofit() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -29,7 +29,7 @@ public class ServiceFactory {
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BuildConfig.ServiceHost)
+                .baseUrl(ServiceHost)
                 .client(client)////set debug
                 .addConverterFactory(GsonConverterFactory.create())//primitive type
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
