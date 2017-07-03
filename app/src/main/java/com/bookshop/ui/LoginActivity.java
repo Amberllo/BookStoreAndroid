@@ -1,16 +1,9 @@
 package com.bookshop.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
 import android.content.CursorLoader;
 import android.content.Loader;
@@ -20,14 +13,12 @@ import android.os.AsyncTask;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,7 +41,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -63,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
-    private ProgressDialog mProgressView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,8 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mProgressView = new ProgressDialog(this);
-        mProgressView.setMessage("正交验证用户信息，请稍候..");
+
     }
 
 
@@ -163,13 +152,9 @@ public class LoginActivity extends AppCompatActivity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         if(show){
-            if(mProgressView!=null &&  !mProgressView.isShowing()) {
-                mProgressView.show();
-            }
+            loading("正交验证用户信息，请稍候..");
         }else{
-            if(mProgressView!=null && mProgressView.isShowing()){
-                mProgressView.dismiss();
-            }
+            dismissLoading();
         }
     }
 

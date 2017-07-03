@@ -40,4 +40,8 @@ public class ServiceFactory {
     public static LoginService loginService(){
         return createRetrofit().create(LoginService.class);
     }
+
+    public static BookService bookService(){
+        return createRetrofit().create(BookService.class);
+    }
 }
