@@ -3,6 +3,7 @@ package com.bookshop.service;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 /**
@@ -12,6 +13,15 @@ import retrofit2.http.POST;
 public interface LoginService {
 
     @POST("/bookshop/Submit1")
-    Call<ResponseBody> auth(@Field(value="username") String username,
+    Call<ResponseBody> auth(
+                            @Header(value = "device") String device,
+                            @Field(value="username") String username,
                             @Field(value = "password") String password);
+
+    @POST("/bookshop/Cegister")
+    Call<ResponseBody> register(
+            @Header(value = "device") String device,
+            @Field(value="username") String username,
+            @Field(value = "password") String password);
+
 }

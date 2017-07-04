@@ -10,11 +10,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.bookshop.R;
 import com.bookshop.bean.BookBean;
 import com.bookshop.view.BookGridView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +44,15 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         gridView = (BookGridView)findViewById(R.id.main_gridview_books);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BookBean bean = (BookBean) parent.getItemAtPosition(position);
+                Intent i = new Intent(MainActivity.this,OrderAddActivity.class);
+                i.putExtra("bookBean", bean);
+                startActivity(i);
+            }
+        });
         loadBooks();
     }
 
@@ -88,6 +100,7 @@ public class MainActivity extends AppCompatActivity
                     BookBean book = new BookBean();
                     book.setBookId("_id_"+i);
                     book.setBookName("_name_"+i);
+                    book.setBookPrice("19.9");
                     books.add(book);
                 }
                 return null;

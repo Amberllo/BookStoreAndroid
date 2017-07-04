@@ -5,6 +5,16 @@
     <color name="colorAccent">#FF4081</color>
 
 
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="green">#FF4d8a45</color>
+    <color name="red">#E51C23</color>
+    <color name="yellow">#FFCC33</color>
     <color name="blue_crm">#1082ff</color>
-
+    <color name="blue_crm2">#5bb5f0</color>
+    <color name="blue_crm3">#25B6ed</color>
+    <color name="gray">#eeeeee</color>
+    <color name="gray_66">#666666</color>
+    <color name="gray_f3">#F3F3F3</color>
+    <color name="list_line">#DEDFE0</color>
 </resources>
