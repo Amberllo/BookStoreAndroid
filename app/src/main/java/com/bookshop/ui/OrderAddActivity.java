@@ -66,13 +66,13 @@ public class OrderAddActivity extends BaseActivity {
                     .subscribe(new Consumer<ResponseBody>() {
                         @Override
                         public void accept(ResponseBody responseBody) throws Exception {
-
+                            Toast.makeText(OrderAddActivity.this,"提交订单成功！",Toast.LENGTH_SHORT);
+                            finish();
                         }
                     }, new Consumer<Throwable>() {
                         @Override
                         public void accept(Throwable throwable) throws Exception {
-                            Toast.makeText(OrderAddActivity.this,"提交订单成功！",Toast.LENGTH_SHORT);
-                            finish();
+
                         }
                     });
                 }

@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <com.bookshop.view.SquareImageView
+        android:layout_margin="10dp"
         android:id="@+id/item_order_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
