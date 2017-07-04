@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bookshop.R;
 import com.bookshop.bean.BookBean;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +76,7 @@ public class BookGridView extends GridView{
 
             BookBean bean = getItem(position);
             holder.tv_name.setText(bean.getBookName());
+            Glide.with(context).load("file:///android_asset/img/"+bean.getBook_image()).into(holder.iv_icon);
             return convertView;
         }
     }

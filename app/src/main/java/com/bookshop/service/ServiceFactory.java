@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceFactory {
 
-    private static String ServiceHost = "http://localhost:8080";
+    private static String ServiceHost = "http://192.168.100.103:8080";
     static Retrofit createRetrofit() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -43,5 +43,9 @@ public class ServiceFactory {
 
     public static BookService bookService(){
         return createRetrofit().create(BookService.class);
+    }
+
+    public static OrderService orderService(){
+        return createRetrofit().create(OrderService.class);
     }
 }

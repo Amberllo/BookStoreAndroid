@@ -15,11 +15,21 @@ import android.widget.AdapterView;
 
 import com.bookshop.R;
 import com.bookshop.bean.BookBean;
+import com.bookshop.bean.OrderBean;
+import com.bookshop.service.ServiceFactory;
 import com.bookshop.view.BookGridView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -75,6 +85,7 @@ public class MainActivity extends AppCompatActivity
             //我的购物车
         } else if (id == R.id.nav_slideshow) {
             //我的订单
+            startActivity(new Intent(MainActivity.this,OrderListActivity.class));
         } else if (id == R.id.nav_manage) {
             //退出登录
             finish();
@@ -87,31 +98,47 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void loadBooks(){
-        new AsyncTask<Void, Void, Void>() {
-            List<BookBean> books = new ArrayList<>();
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-            }
 
-            @Override
-            protected Void doInBackground(Void... params) {
-                for (int i=0;i<20;i++){
-                    BookBean book = new BookBean();
-                    book.setBookId("_id_"+i);
-                    book.setBookName("_name_"+i);
-                    book.setBookPrice("19.9");
-                    books.add(book);
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                gridView.setData(books);
-            }
-        }.execute();
+        ServiceFactory.bookService().getBookList("Android","")
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<ResponseBody>() {
+                    @Override
+                    public void accept(ResponseBody response) throws Exception {
+                        String json = response.string();
+                        try{
+                            List<BookBean> books = new Gson().fromJson(json, new TypeToken<List<BookBean>>(){}.getType());
+                            gridView.setData(books);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                });
+//        new AsyncTask<Void, Void, Void>() {
+//            List<BookBean> books = new ArrayList<>();
+//            @Override
+//            protected void onPreExecute() {
+//                super.onPreExecute();
+//            }
+//
+//            @Override
+//            protected Void doInBackground(Void... params) {
+//                for (int i=0;i<20;i++){
+//                    BookBean book = new BookBean();
+//                    book.setBookId("_id_"+i);
+//                    book.setBookName("_name_"+i);
+//                    book.setBookPrice("19.9");
+//                    books.add(book);
+//                }
+//                return null;
+//            }
+//
+//            @Override
+//            protected void onPostExecute(Void aVoid) {
+//                super.onPostExecute(aVoid);
+//                gridView.setData(books);
+//            }
+//        }.execute();
     }
 
 }
