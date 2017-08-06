@@ -1,4 +1,4 @@
-package com.bookshop.ui;
+package com.bookshop.controller;
 
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;

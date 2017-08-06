@@ -1,7 +1,6 @@
-package com.bookshop.ui;
+package com.bookshop.controller;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,21 +14,17 @@ import android.widget.AdapterView;
 
 import com.bookshop.R;
 import com.bookshop.bean.BookBean;
-import com.bookshop.bean.OrderBean;
 import com.bookshop.service.ServiceFactory;
 import com.bookshop.view.BookGridView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

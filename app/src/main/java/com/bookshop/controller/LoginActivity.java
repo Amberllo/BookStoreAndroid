@@ -1,4 +1,4 @@
-package com.bookshop.ui;
+package com.bookshop.controller;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -116,7 +116,7 @@ public class LoginActivity extends BaseActivity {
             focusView.requestFocus();
         } else {
             showProgress(true);
-            ServiceFactory.loginService().auth("Android",email,password)
+            ServiceFactory.loginService().auth(email,password)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(new Consumer<ResponseBody>() {

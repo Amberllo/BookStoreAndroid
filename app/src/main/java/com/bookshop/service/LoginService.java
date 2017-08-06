@@ -17,15 +17,13 @@ import retrofit2.http.Query;
 
 public interface LoginService {
 
-    @GET("/bookshop/Submit1")
+    @GET("/user/auth")
     Observable<ResponseBody> auth(
-            @Header(value = "device") String device,
             @Query(value="username") String username,
             @Query(value = "userpsw") String password);
 
-    @POST("/bookshop/Cegister")
+    @POST("/user/register")
     Observable<ResponseBody> register(
-            @Header(value = "device") String device,
             @Query(value="username") String username,
             @Query(value = "password") String password);
 

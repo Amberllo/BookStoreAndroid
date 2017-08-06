@@ -1,14 +1,10 @@
-package com.bookshop.ui;
+package com.bookshop.controller;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.bookshop.R;
-import com.bookshop.bean.BookBean;
 import com.bookshop.bean.OrderBean;
 import com.bookshop.bean.UserBean;
 import com.bookshop.service.ServiceFactory;

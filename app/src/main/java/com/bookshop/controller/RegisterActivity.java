@@ -1,4 +1,4 @@
-package com.bookshop.ui;
+package com.bookshop.controller;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
